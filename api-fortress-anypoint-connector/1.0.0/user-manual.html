@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="generator" content="Asciidoctor 0.1.4">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="api, api fortress, fortress, testing, mulesoft, mulesoft connector, connector, anypoint exchange">
+<title>API Fortress Anypoint Connector</title>
+<link rel="stylesheet" type="text/css" media="screen" href="../../stylesheets/stylesheet.css">
+<style>
+
+</style>
+</head>
+<body class="article toc2 toc-left">
+  <!-- HEADER -->
+  <div id="header_wrap" class="outer">
+      <header class="inner">
+        <a id="forkme_banner" href="https://github.com/apifortress">View on GitHub</a>
+
+        <h1 id="project_title">Apifortress.GitHub.io</h1>
+        <h2 id="project_tagline"></h2>
+      </header>
+  </div>
+  <!-- MAIN CONTENT -->
+  <div id="main_content_wrap" class="outer">
+    <section id="main_content" class="inner">
+    <div id="header">
+    <h1>API Fortress Anypoint Connector</h1>
+    <div id="content">
+    <div id="preamble">
+    <div class="sectionbody">
+    <div class="toc2">
+    <div class="title">Table of Contents</div>
+    <ul class="sectlevel1">
+    <li><a href="#_introduction">Introduction</a></li>
+    <li><a href="#_prerequisites">Prerequisites</a></li>
+    <li>
+    <ul class="sectlevel2">
+    <li><a href="#requirements">Hardware and Software Requirements</a></li>
+    <li><a href="#_compatibility">Compatibility</a></li>
+    </ul>
+    </li>
+    <li><a href="#_installing_the_connector">Installing the Connector</a></li>
+    <li>
+    <ul class="sectlevel2">
+    <li><a href="#_upgrading_from_an_older_version">Upgrading From an Older Version</a></li>
+    </ul>
+    </li>
+    <li><a href="#_before_using_the_connector">Before Using the Connector</a></li>
+    <li>
+    <ul class="sectlevel2">
+    <li><a href="#_register_upgrade_an_api_fortress_account">Register/Upgrade an API Fortress Account</a></li>
+    <li><a href="#_build_a_test_for_your_api">Build a Test for Your API</a></li>
+    <li><a href="#_collect_the_information_you_will_need">Collect the Information You Will Need</a></li>
+    </ul>
+    </li>
+    <li><a href="#_configuring_the_connector_global_element">Configuring the Connector Global Element</a></li>
+    <li><a href="#_using_the_connector">Using the Connector</a></li>
+    <li>
+    <ul class="sectlevel2">
+    <li><a href="#_operations">Operations</a></li>
+    <li><a href="#_parameters">Parameters</a></li>
+    <li><a href="#_connector_namespace_and_schema">Connector Namespace and Schema</a></li>
+    <li><a href="#_using_the_connector_in_a_mavenized_mule_app">Using the Connector in a Mavenized Mule App</a></li>
+    </ul>
+    </li>
+    <li><a href="#_demo_mule_applications_using_connector">Demo Mule Applications Using Connector</a></li>
+    <li>
+    <ul class="sectlevel2">
+    <li><a href="#_simple_passthrough_use_case">Simple Passthrough Use Case</a></li>
+    <li><a href="#_simple_passthrough_use_case_xml">Simple Passthrough Use Case - XML</a></li>
+    </ul>
+    </li>
+    <li><a href="#_resources">Resources</a></li>
+    </ul>
+    </div>
+
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_introduction">Introduction</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>API Fortress is the most complete API testing platform in the market. The API Fortress Anypoint Connector allows you to serialize your API responses in Mule and send them to API Fortress for testing. Based on the configuration, the results of the tests can be sent back to the Mule flow or be stored in API Fortress for further analysis.</p>
+    </div>
+    <div class="paragraph">
+    <p>Read through this user guide to understand how to set up and configure a flow using the connector.</p>
+    </div>
+    <div class="paragraph">
+    <p>MuleSoft maintains this connector under the <a href="https://docs.mulesoft.com/mule-user-guide/v/3.8/anypoint-connectors#connector-categories">MuleSoft Certified</a> support policy.</p>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_prerequisites">Prerequisites</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>This document assumes that you are familiar with Mule,
+    <a href="https://docs.mulesoft.com/mule-user-guide/v/3.8/anypoint-connectors">Anypoint Connectors</a>, and
+    <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/anypoint-studio-essentials">Anypoint Studio Essentials</a>. To increase your familiarity with Studio, consider completing a <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/basic-studio-tutorial">Anypoint Studio Tutorial</a>. This page requires some basic knowledge of <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/mule-concepts">Mule Concepts</a>, <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/elements-in-a-mule-flow">Elements in a Mule Flow</a>, and <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/global-elements">Global Elements</a>.</p>
+    </div>
+    <div class="paragraph">
+    <p>To use the API Fortress connector you must have the following:</p>
+    </div>
+    <div class="ulist">
+    <ul>
+    <li>
+    <p>Anypoint Studio</p>
+    </li>
+    <li>
+    <p>A paid or trial API Fortress account</p>
+    </li>
+    </ul>
+    </div>
+    <div class="sect2">
+    <h3 id="requirements">Hardware and Software Requirements</h3>
+    <div class="paragraph">
+    <p>For hardware and software requirements, please visit the <a href="https://docs.mulesoft.com/mule-user-guide/v/3.8/hardware-and-software-requirements">Hardware and Software Requirements</a> page.</p>
+    </div>
+    </div>
+    <div class="sect2">
+    <h3 id="_compatibility">Compatibility</h3>
+    <table class="tableblock frame-all grid-all" style="width:100%; ">
+    <colgroup>
+    <col style="width:50%;">
+    <col style="width:50%;">
+    </colgroup>
+    <thead>
+    <tr>
+    <th class="tableblock halign-left valign-top">Application/Service</th>
+    <th class="tableblock halign-left valign-top">Version</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Anypoint Studio</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>6.0 or higher</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Mule Runtime EE</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>3.8.x or higher</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Java</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>1.7 or higher</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>API Fortress account</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>trial or higher</p>
+    </div></div></td>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_installing_the_connector">Installing the Connector</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>You can install the connector in Anypoint Studio using the instructions in
+    <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/anypoint-exchange#installing-a-connector-from-anypoint-exchange">Installing a Connector from Anypoint Exchange</a>.</p>
+    </div>
+    <div class="sect2">
+    <h3 id="_upgrading_from_an_older_version">Upgrading From an Older Version</h3>
+    <div class="paragraph">
+    <p>If you’re currently using an older version of the connector, a small popup appears in the bottom right corner of Anypoint Studio with an "Updates Available" message.</p>
+    </div>
+    <div class="olist arabic">
+    <ol class="arabic">
+    <li>
+    <p>Click the popup and check for available updates. </p>
+    </li>
+    <li>
+    <p>Click the Connector version checkbox and click <strong>Next</strong> and follow the instructions provided by the user interface. </p>
+    </li>
+    <li>
+    <p><strong>Restart</strong> Studio when prompted. </p>
+    </li>
+    <li>
+    <p>After restarting, when creating a flow and using the connector, if you have several versions of the connector installed you may be asked which version you would like to use. Choose the version you would like to use.</p>
+    </li>
+    </ol>
+    </div>
+    <div class="paragraph">
+    <p>We recommend that you keep Studio up to date with the latest version.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_before_using_the_connector">Before Using the Connector</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>Before you start using the connector (other than running the demo) here&#8217;s a few thing you should know.</p>
+    </div>
+    <div class="sect2">
+    <h3 id="_register_upgrade_an_api_fortress_account">Register/Upgrade an API Fortress Account</h3>
+    <div class="paragraph">
+    <p>The trial account will provide you access to most API Fortress features, including the API that is required to run the connector. A trial account lasts for 30 days. Register for a free trial at <a href="https://mastiff.apifortress.com">mastiff.apifortress.com</a>.</p>
+    </div>
+    <div class="paragraph">
+    <p>Refer to <a href="http://apifortress.com/pricing">apifortress.com</a> for pricing options, or email <a href="mailto:support@apifortress.com">support@apifortress.com</a> to discuss options that best suit your needs.</p>
+    </div>
+    </div>
+    <div class="sect2">
+    <h3 id="_build_a_test_for_your_api">Build a Test for Your API</h3>
+    <div class="paragraph">
+    <p>Build a test using the API Fortress visual composer. Since the payload will be forwarded from the Mule engine, the test is not required to perform I/O operations to retrieve the resource. Therefore, the test will generally only contain assertions evaluting the content of the <code>payload</code> variable.</p>
+    </div>
+    <div class="paragraph">
+    <p><span class="image"><img src="./_images/api-fortress-composer.png" alt="Console"></span></p>
+    </div>
+    <div class="paragraph">
+    <p>The most impressive part of the API Fortress platform is the ability to create intelligent tests without writing any code. To simplify this we suggest using the HTTP console. This facilitates the process of writing a test because the GUI composer will make suggestions during composition. To do this either make a call with the console, or paste an example payload in the "Response" tab.</p>
+    </div>
+    <div class="paragraph">
+    <p><span class="image"><img src="./_images/api-fortress-console.png" alt="Console"></span></p>
+    </div>
+    <div class="paragraph">
+    <p>We strongly suggest you review the Examples, or create a test using <a href="http://apifortress.com/doc/writing-your-first-test/">Magic</a> to quickly learn how to use the GUI composer. Please refer to <a href="http://apifortress.com/doc/">the API Fortress documentation</a> for extensive guides on creating a test with from API Fortress.</p>
+    </div>
+    </div>
+    <div class="sect2">
+    <h3 id="_collect_the_information_you_will_need">Collect the Information You Will Need</h3>
+    <div class="paragraph">
+    <p>You will need the following information to use the API Fortress API to run tests:</p>
+    </div>
+    <div class="ulist">
+    <ul>
+    <li>
+    <p><strong>API Hook URL</strong> : API Fortress generated URLs representing a project. You can generate one by accessing your company page. With this URL you can access all the operations that do not expose sensitive data, including running tests.
+    <span class="image"><img src="./_images/api-fortress-hooks.png" alt="API Hooks"></span></p>
+    </li>
+    <li>
+    <p><strong>Test ID</strong> : When running a single test you will need the test ID, which can be retrieved in the test interstitial page.
+    <span class="image"><img src="./_images/api-fortress-interstitial.png" alt="Interstitial page"></span></p>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_configuring_the_connector_global_element">Configuring the Connector Global Element</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>To use the API Fortress connector in your Mule application, you need to configure a global API Fortress element which can be used by the API Fortress connector (read more about this at <a href="https://docs.mulesoft.com/mule-fundamentals/v/3.8/global-elements">Global Elements</a>). The API Fortress connector offers the following global configuration:</p>
+    </div>
+    <table class="tableblock frame-all grid-all" style="width:100%; ">
+    <colgroup>
+    <col style="width:50%;">
+    <col style="width:50%;">
+    </colgroup>
+    <thead>
+    <tr>
+    <th class="tableblock halign-left valign-top">Field</th>
+    <th class="tableblock halign-left valign-top">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>connectTimeout</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Timeout to connect in seconds. Increase it if your connection to the API Fortress instance has long latencies.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>socketTimeout</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Socket timeout in seconds. Increase it if your connection to the API Fortress instance is slow.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>totalConnections</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Maximum number of parallel HTTP connections. A high number will effect resource consumption. A small number will slow the connector down.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>threshold</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Run a test after a certain number of requests have been received. Used to reduce the samples.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>silent</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>True if the API Fortress cloud shouldn&#8217;t send failure notifications.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>dryRun</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>True if the API Fortress cloud shouldn&#8217;t store test results.</p>
+    </div></div></td>
+    </tr>
+    </tbody>
+    </table>
+
+    <div class="paragraph">
+    <p><span class="image"><img src="./_images/api-fortress-global-configuration.png" alt="Global Configuration"></span></p>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_using_the_connector">Using the Connector</h2>
+    <div class="sectionbody">
+    <div class="paragraph">
+    <p>The connector can be placed anywhere in a Mule flow. The payload can either be a plain JSON/XML string, or a POJO object that will be converted to JSON.</p>
+    </div>
+    <div class="paragraph">
+    <p>Other than the payload, the connector will require access to the response headers you can configure in the connector instance configuration. The "content-type" header should be present, otherwise text/plain will be used.</p>
+    </div>
+    <div class="sect2">
+    <h3 id="_operations">Operations</h3>
+    <div class="paragraph">
+    <p>There are four operations available on the connector. They are explained below. From a high level, either the flow can wait for the results for it to use, or continue with the flow without expecting that result.</p>
+    </div>
+    <div class="paragraph">
+    <p>Automatch is a system API fortress uses to decide which test to run for a partial endpoint URL, by matching a pattern. For example, the /products/shoes endpoint will match the /products/* pattern.</p>
+    </div>
+    <table class="tableblock frame-all grid-all" style="width:100%; ">
+    <colgroup>
+    <col style="width:20%;">
+    <col style="width:30%;">
+    <col style="width:50%;">
+    </colgroup>
+    <thead>
+    <tr>
+    <th class="tableblock halign-left valign-top">Operation</th>
+    <th class="tableblock halign-left valign-top">Description</th>
+    <th class="tableblock halign-left valign-top">Parameters</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>single test synchronous</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>The serialized API call will be forwarded to the API Fortress engine, and one test will be run against it. The connector will wait for the result of the test and set it as payload.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>payload, hook,testId,headers,variables.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>single test passthrough</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Will perform the same operation as the synchronous mode, but will not wait for the test results. It will continue the flow as soon as it gets an acceptance confirmation from API Fortress. The original payload is preserved in the flow.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>payload, hook,testId,headers,variables,failOnError.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>automatch synchronous</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>The serialized API call will be forwarded to the API Fortress engine that will choose which tests to run based on the <em>automatch</em> field. Eventually, the connector will wait for the result of the tests and set them as payload.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>payload, hook,headers,variables.</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>automatch passthrough</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Will perform the same operation as the synchronous mode, but will not wait for the test results. It will continue the flow as soon as it gets an acceptance confirmation from API Fortress. The original payload is preserved in the flow.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>payload, hook,testId,headers,variables,failOnError.</p>
+    </div></div></td>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+    <div class="sect2">
+    <h3 id="_parameters">Parameters</h3>
+    <table class="tableblock frame-all grid-all" style="width:100%; ">
+    <colgroup>
+    <col style="width:10%;">
+    <col style="width:70%;">
+    <col style="width:10%;">
+    <col style="width:10%;">
+    </colgroup>
+    <thead>
+    <tr>
+    <th class="tableblock halign-left valign-top">Parameter</th>
+    <th class="tableblock halign-left valign-top">Description</th>
+    <th class="tableblock halign-left valign-top">Default</th>
+    <th class="tableblock halign-left valign-top">Required</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>payload</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>A reference to the payload to be tested. It generally is made of text, but can be a POJO as well.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><code>#[payload]</code></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>yes</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>hook</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>The API Hook URL identifying one project, as described in "Collect the Information You Will Need."</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>yes</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>testId</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>The ID of the test to run for a single test run. It can be retrieved on the test interstitial page, as described in "Collect the Information You Will Need"</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>yes</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>automatch</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>For automatch operations, a path that identifies the URL of the endpoint. Please refer to the <a href="http://apifortress.com/doc/automatch/">Automatch documentation</a>.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>yes</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>headers</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>An API response payload generally contains multiple headers you might want to test. Though not required, it is strongly suggested to provide at least the <em>content-type</em> header.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><code>#[message.inboundProperties]</code></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>no</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>variables</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Extra variables to be injected in the scope of the test. Examples could be the server name, the flow name, or the local time. The variables will be accessible to the test just like the <code>payload</code> variable.</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>empty</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>no</p>
+    </div></div></td>
+    </tr>
+    <tr>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p><strong>failOnError</strong></p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>Where supported, this flag will decide whether the flow should continue or not even when an I/O exception is raised. When set to true, the failure will throw the exception, when set to false, the flow will continue. To be used when the connector is placed in critical flows that need to continue in any case</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>true</p>
+    </div></div></td>
+    <td class="tableblock halign-left valign-top"><div><div class="paragraph">
+    <p>yes</p>
+    </div></div></td>
+    </tr>
+    </tbody>
+    </table>
+
+    </div>
+    <div class="sect2">
+    <h3 id="_connector_namespace_and_schema">Connector Namespace and Schema</h3>
+    <div class="paragraph">
+    <p>When designing your application in Studio, the act of dragging the connector from the palette onto the Anypoint Studio canvas should automatically populate the XML code with the connector <strong>namespace</strong> and <strong>schema location</strong>.</p>
+    </div>
+    <div class="paragraph">
+    <p><strong>Namespace:</strong> <code>http://www.mulesoft.org/schema/mule/connector</code>
+    <strong>Schema Location:</strong> <code>http://www.mulesoft.org/schema/mule/connector/current/mule-connector.xsd</code></p>
+    </div>
+    <div class="admonitionblock tip">
+    <table>
+    <tr>
+    <td class="icon">
+    <div class="title">Tip</div>
+    </td>
+    <td class="content">
+    If you are manually coding the Mule application in Studio&#8217;s XML editor, or another text editor, define the namespace and schema location in the header of your <strong>Configuration XML</strong>, inside the <code>&lt;mule&gt;</code> tag.
+    </td>
+    </tr>
+    </table>
+    </div>
+    <div class="listingblock">
+    <div class="content">
+    <pre class="highlight"><code class="xml language-xml">&lt;mule xmlns="http://www.mulesoft.org/schema/mule/core"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:api-fortress="http://www.mulesoft.org/schema/mule/api-fortress"
+          xsi:schemaLocation="
+                   http://www.mulesoft.org/schema/mule/core
+                   http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+                   http://www.mulesoft.org/schema/mule/api-fortress
+                   http://www.mulesoft.org/schema/mule/connector/current/api-fortress.xsd"&gt;
+
+          &lt;!-- put your global configuration elements and flows here --&gt;
+
+    &lt;/mule&gt;</code></pre>
+    </div>
+    </div>
+    </div>
+    <div class="sect2">
+    <h3 id="_using_the_connector_in_a_mavenized_mule_app">Using the Connector in a Mavenized Mule App</h3>
+    <div class="paragraph">
+    <p>If you are coding a Mavenized Mule application, this XML snippet must be included in your <code>pom.xml</code> file.</p>
+    </div>
+    <div class="listingblock">
+    <div class="content">
+    <pre class="highlight"><code class="xml language-xml">&lt;dependency&gt;
+       &lt;groupId&gt;org.mule.modules&lt;/groupId&gt;
+       &lt;artifactId&gt;api-fortress-connector&lt;/artifactId&gt;
+       &lt;version&gt;1.0.0-RELEASE&lt;/version&gt;
+    &lt;/dependency&gt;</code></pre>
+    </div>
+    </div>
+    <div class="admonitionblock tip">
+    <table>
+    <tr>
+    <td class="icon">
+    <div class="title">Tip</div>
+    </td>
+    <td class="content">
+    <div class="paragraph">
+    <p>Inside the <code>&lt;version&gt;</code> tags put the desired version number. Use the word <code>RELEASE</code> for the latest release, or <code>SNAPSHOT</code> for the latest available version. The available versions to date are:</p>
+    </div>
+    <div class="ulist">
+    <ul>
+    <li>
+    <p><strong>1.0.0-RELEASE</strong></p>
+    </li>
+    </ul>
+    </div>
+    </td>
+    </tr>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_demo_mule_applications_using_connector">Demo Mule Applications Using Connector</h2>
+    <div class="sectionbody">
+    <div class="sect2">
+    <h3 id="_simple_passthrough_use_case">Simple Passthrough Use Case</h3>
+    <div class="paragraph">
+    <p>Before you implement this example make sure to read the "Before Using the Connector" section.</p>
+    </div>
+    <div class="paragraph">
+    <p>Here&#8217;s the flow we are going to implement in the Anypoint Studio UI.
+    <span class="image"><img src="./_images/api-fortress-use-case-1.png" alt="The flow"></span></p>
+    </div>
+    <div class="paragraph">
+    <p>The simplest use case is the validation of a response coming from an endpoint.</p>
+    </div>
+    <div class="olist arabic">
+    <ol class="arabic">
+    <li>
+    <p>Set up a basic HTTP entry point by dragging the HTTP connector from the palette to your canvas. Create a global configuration with the default values (port 8081).</p>
+    </li>
+    <li>
+    <p>Drag and drop an HTTP request connector on the canvas as second step of the flow. Configure the instance to perform an HTTP call to an API endpoint of your choice.
+    Refer to <a href="https://docs.mulesoft.com/mule-user-guide/v/3.8/http-request-connector">the HTTP request connector documentation</a></p>
+    </li>
+    <li>
+    <p>Drag API Fortress connector from the palette and drop it as the third element. Create the default global configuration setting silent=true.</p>
+    </li>
+    </ol>
+    </div>
+    <div class="paragraph">
+    <p><span class="image"><img src="./_images/api-fortress-use-case-2.png" alt="Global configuration example"></span></p>
+    </div>
+    <div class="olist arabic">
+    <ol class="arabic">
+    <li>
+    <p>Select the "single test passthrough" operation.</p>
+    </li>
+    <li>
+    <p>Leave the headers input as default</p>
+    </li>
+    <li>
+    <p>In your API Fortress account, on thr settings page, create an API Hook URL for your project. Use it as the "hook" parameter.</p>
+    </li>
+    <li>
+    <p>In your API Fortress account, on the test details page, obtain a test ID. Use it as the "testId" parameter.</p>
+    </li>
+    </ol>
+    </div>
+    <div class="paragraph">
+    <p><span class="image"><img src="./_images/api-fortress-use-case-3.png" alt="Connector configuration"></span></p>
+    </div>
+    <div class="olist arabic">
+    <ol class="arabic">
+    <li>
+    <p>Run the flow in your Mule engine</p>
+    </li>
+    <li>
+    <p>Hit the url <code>http://localhost:8081</code> with an HTTP client of your choice. The flow should return the payload provided by the second HTTP connector.</p>
+    </li>
+    <li>
+    <p>Verify the test has run and produced a report in the API Fortress project dashboard.</p>
+    </li>
+    </ol>
+    </div>
+    </div>
+    <div class="sect2">
+    <h3 id="_simple_passthrough_use_case_xml">Simple Passthrough Use Case - XML</h3>
+    <div class="paragraph">
+    <p>Paste this into Anypoint Studio to interact with the example use case application discussed in this guide.</p>
+    </div>
+    <div class="listingblock">
+    <div class="content">
+    <pre class="highlight"><code class="xml language-xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+
+    &lt;mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:api-fortress="http://www.mulesoft.org/schema/mule/api-fortress" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+    	xmlns:spring="http://www.springframework.org/schema/beans"
+    	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+    http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+    http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+    http://www.mulesoft.org/schema/mule/api-fortress http://www.mulesoft.org/schema/mule/api-fortress/current/mule-api-fortress.xsd"&gt;
+        &lt;http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/&gt;
+        &lt;http:request-config name="HTTP_Request_Configuration" protocol="HTTPS" host="mastiff.apifortress.com" port="443" basePath="/api/examples/retail" doc:name="HTTP Request Configuration"/&gt;
+        &lt;api-fortress:config name="API_Fortress__Configuration" silent="true" dryRun="false" doc:name="API Fortress: Configuration"/&gt;
+        &lt;flow name="single_test_endpoint_response" doc:description="In this example we run a single test against the response of a payload. API Fortress is using the passthrough operation so that the endpoint payload is preserved and sent back to the requesting agent."&gt;
+            &lt;http:listener config-ref="HTTP_Listener_Configuration" path="/single/endpoint_response" allowedMethods="GET" doc:name="HTTP"/&gt;
+            &lt;http:request config-ref="HTTP_Request_Configuration" path="/products" method="GET" doc:name="HTTP"/&gt;
+            &lt;api-fortress:single-test-passthrough config-ref="API_Fortress__Configuration" hook="https://mastiff.apifortress.com/app/api/rest/v3/9e05babb-e332-4715-bba5-a1a487a4b05c324"  doc:name="API Fortress" testId="57ce873ebbb0fb02e8069d42" /&gt;
+            &lt;set-payload value="#[payload]" mimeType="application/json" doc:name="Set Payload"/&gt;
+        &lt;/flow&gt;
+    &lt;/mule&gt;
+    </code></pre>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="sect1">
+    <h2 id="_resources">Resources</h2>
+    <div class="sectionbody">
+    <div class="ulist">
+    <ul>
+    <li>
+    <p>Learn more about working with <a href="https://docs.mulesoft.com/mule-user-guide/v/3.8/anypoint-connectors">Anypoint Connectors</a>.</p>
+    </li>
+    <li>
+    <p>For additional documentation on the API Fortress platform, visit our <a href="http://apifortress.com/doc/">documentation</a>.</p>
+    </li>
+    <li>
+    <p>Access the <a href="release-notes.html">API Fortress Connector Release Notes</a>.</p>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+  </section>
+  <!-- FOOTER  -->
+  <div id="footer_wrap" class="outer">
+    <footer class="inner">
+      <p>&copy;2016 <a href="http://apifortress.com">API Fortress</a></p>
+    </footer>
+  </div>
+</div>
+</body>
+</html>
